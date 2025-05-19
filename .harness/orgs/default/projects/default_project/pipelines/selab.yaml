@@ -28,6 +28,7 @@ pipeline:
               namespace: default
               automountServiceAccountToken: true
               nodeSelector: {}
+              harnessImageConnectorRef: SELabConnector
               os: Linux
           execution:
             steps:
@@ -36,7 +37,7 @@ pipeline:
                   name: build java app
                   identifier: build_java_app
                   spec:
-                    connectorRef: account.harnessImage
+                    connectorRef: SELabConnector
                     image: maven:3.8-jdk-11
                     shell: Sh
                     command: |-
