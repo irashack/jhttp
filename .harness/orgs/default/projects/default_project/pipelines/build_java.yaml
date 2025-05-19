@@ -32,7 +32,7 @@ pipeline:
                   name: RunTestsWithIntelligence
                   identifier: RunTestsWithIntelligence
                   spec:
-                    connectorRef: account.harnessImage
+                    connectorRef: SELabConnector
                     image: maven:3.8-jdk-11
                     shell: Sh
                     command: |-
