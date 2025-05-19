@@ -19,12 +19,6 @@ pipeline:
           caching:
             enabled: true
           cloneCodebase: true
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Cloud
-            spec: {}
           execution:
             steps:
               - step:
@@ -53,3 +47,11 @@ pipeline:
                     repo: hootienofish/harnesslab
                     tags:
                       - <+pipeline.sequenceId>
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: SELabK8S
+              namespace: default
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
