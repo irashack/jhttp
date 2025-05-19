@@ -56,3 +56,20 @@ pipeline:
                       spec:
                         paths:
                           - /harness/target/*.xml
+              - step:
+                  type: Test
+                  name: RunTestsWithIntelligence
+                  identifier: RunTestsWithIntelligence
+                  spec:
+                    connectorRef: SELabConnector
+                    image: maven:3.8-jdk-11
+                    shell: Sh
+                    command: |-
+                      mvn test
+                      mvn package -DskipTests
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - target/surefire-reports/*.xml
+                    intelligenceMode: true
