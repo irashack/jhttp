@@ -63,12 +63,21 @@ pipeline:
         spec:
           deploymentType: Kubernetes
           service:
-            serviceRef: deploy_java
+            serviceRef: deploy_image
+            serviceInputs:
+              serviceDefinition:
+                type: Kubernetes
+                spec:
+                  artifacts:
+                    primary:
+                      primaryArtifactRef: <+input>
+                      sources: <+input>
           environment:
-            environmentRef: harnessdevenv
+            environmentRef: harnesslab
+            gitBranch: main
             deployToAll: false
             infrastructureDefinitions:
-              - identifier: harnessk8sinfra
+              - identifier: minikube
           execution:
             steps:
               - stepGroup:
