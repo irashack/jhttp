@@ -1,0 +1,8 @@
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: harnesslab
+spec:
+  containers:
+    - name: harnesslab
+      image: hootienofish/harnesslab:latest
