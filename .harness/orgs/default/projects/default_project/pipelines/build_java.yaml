@@ -32,12 +32,17 @@ pipeline:
                   name: RunTestsWithIntelligence
                   identifier: RunTestsWithIntelligence
                   spec:
+                    connectorRef: account.harnessImage
+                    image: maven:3.8-jdk-11
+                    shell: Sh
                     command: |-
                       mvn test
                       mvn package -DskipTests
-                    shell: Sh
-                    connectorRef: account.harnessImage
-                    image: maven:3.8-jdk-11
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - target/surefire-reports/*.xml
                     intelligenceMode: true
               - step:
                   type: BuildAndPushDockerRegistry
