@@ -40,7 +40,19 @@ pipeline:
                     connectorRef: SELabConnector
                     image: maven:3.8-jdk-11
                     shell: Sh
-                    command: |-
-                      echo "Welcome to Harness CI"
-                      mvn -B package --file pom.xml
+                    command: mvn clean package dependency:copy-dependencies
                   description: Build Java App
+              - step:
+                  type: Run
+                  name: check dependencies
+                  identifier: check_dependencies
+                  spec:
+                    connectorRef: SELabConnector
+                    image: maven:3.8-jdk-11
+                    shell: Sh
+                    command: mvn dependency-check:check -U -DskipTests
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - /harness/target/*.xml
