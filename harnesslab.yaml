@@ -8,7 +8,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app:jhttp
+      app: jhttp
   spec:
     containers:
       - name: harnesslab
