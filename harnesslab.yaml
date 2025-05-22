@@ -9,9 +9,13 @@ spec:
   selector:
     matchLabels:
       app: jhttp
-  spec:
-    containers:
-      - name: harnesslab
-        image: hootienofish/harnesslab:latest
-    imagePullSecrets:
-      - name: regcred
+  template:
+    metadata:
+      labels:
+        app: jhttp
+    spec:
+      containers:
+        - name: harnesslab
+          image: hootienofish/harnesslab:latest
+      imagePullSecrets:
+        - name: regcred
