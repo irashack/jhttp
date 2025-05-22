@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: harnesslab
-          image: hootienofish/harnesslab:latest
+          image: hootienofish/harnesslab:5
       imagePullSecrets:
         - name: regcred
