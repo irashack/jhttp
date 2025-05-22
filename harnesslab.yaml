@@ -1,10 +1,17 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: harnesslab
+  labels:
+    app: jhttp
 spec:
-  containers:
-    - name: harnesslab
-      image: hootienofish/harnesslab:latest
-  imagePullSecrets:
-    - name: regcred
+  replicas: 1
+  selector:
+    matchLabels:
+      app:jhttp
+  spec:
+    containers:
+      - name: harnesslab
+        image: hootienofish/harnesslab:latest
+    imagePullSecrets:
+      - name: regcred
